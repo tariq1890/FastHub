@@ -31,7 +31,7 @@ public class BasePresenter<V extends BaseMvp.FAView> extends TiPresenter<V> impl
 
     @Override public void manageSubscription(@Nullable Subscription... subscription) {
         if (subscription != null) {
-            subscriptionHandler.manageSubscription(subscription);
+            subscriptionHandler.manageSubscriptions(subscription);
         }
     }
 

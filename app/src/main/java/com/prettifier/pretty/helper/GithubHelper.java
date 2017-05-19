@@ -20,6 +20,7 @@ public class GithubHelper {
     private static Pattern IMAGE_TAG_MATCHER = Pattern.compile("src=\"(.*?)\"");
 
     @NonNull public static String generateContent(@NonNull String source, @Nullable String baseUrl, boolean wrap, boolean dark) {
+        Logger.e(baseUrl);
         if (baseUrl == null) {
             return mergeContent(source, wrap, dark);
         } else {
@@ -37,7 +38,6 @@ public class GithubHelper {
             if (src.startsWith("http://") || src.startsWith("https://")) {
                 continue;
             }
-            Logger.e(src);
             String finalSrc = "https://raw.githubusercontent.com/" + owner + "/" + repoName + "/master/" + src;
             source = source.replace("src=\"" + src + "\"", "src=\"" + finalSrc + "\"");
         }

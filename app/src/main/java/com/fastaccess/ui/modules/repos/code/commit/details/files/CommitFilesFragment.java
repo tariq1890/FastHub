@@ -63,6 +63,7 @@ public class CommitFilesFragment extends BaseFragment<CommitFilesMvp.View, Commi
         refresh.setEnabled(false);
         stateLayout.setEmptyText(R.string.no_files);
         recycler.setEmptyView(stateLayout, refresh);
+        recycler.addKeyLineDivider();
         adapter = new CommitFilesAdapter(getPresenter().getFiles(), this);
         adapter.setListener(getPresenter());
         recycler.setAdapter(adapter);
@@ -78,7 +79,7 @@ public class CommitFilesFragment extends BaseFragment<CommitFilesMvp.View, Commi
 
     @Override public void onToggle(int position, boolean isCollapsed) {
         if (adapter.getItem(position).getPatch() == null) {
-            ActivityHelper.openChooser(getContext(), adapter.getItem(position).getBlobUrl());
+            ActivityHelper.openChooser(getContext(), adapter.getItem(position).getRawUrl());
         }
         getSparseBooleanArray().put(position, isCollapsed);
     }
